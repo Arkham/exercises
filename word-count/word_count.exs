@@ -9,8 +9,7 @@ defmodule Words do
     Regex.scan(~r/[-\p{L}\d]+/u, sentence)
     |> Enum.reduce(%{}, fn([word], acc) ->
       word = String.downcase(word)
-      count = Map.get(acc, word, 0)
-      Map.put(acc, word, count + 1)
+      Map.update(acc, word, 1, &(&1 + 1))
     end)
   end
 end
